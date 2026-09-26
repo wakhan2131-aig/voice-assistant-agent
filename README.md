@@ -1,3 +1,4 @@
+HEAD
 # 🤖 OpenChat Local AI
 
 A lightweight, privacy-focused chatbot interface for interacting with local LLMs via **Ollama**.
@@ -51,3 +52,6 @@ python main.py
 - `app.py`: Streamlit web application.
 - `main.py`: CLI entry point.
 - `src/openchat/llm.py`: Core logic for Ollama API communication.
+
+# voice-assistant-agent
+0a04253c2921210f86acb699f1a6ff3886762476
