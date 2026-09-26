@@ -1,57 +1,74 @@
-HEAD
-# 🤖 OpenChat Local AI
+# Voice AI Assistant with LiveKit
 
-A lightweight, privacy-focused chatbot interface for interacting with local LLMs via **Ollama**.
+This project implements a real-time, low-latency voice AI assistant using the [LiveKit Agents](https://livekit.io/agents) framework. The assistant provides a seamless voice-to-voice experience by integrating state-of-the-art Speech-to-Text (STT), Large Language Models (LLM), and Text-to-Speech (TTS) technologies.
 
-## ⚡ Quick Start
+## 🚀 Features
 
-### 1. Prerequisites
-Install [Ollama](https://ollama.com) and pull a model:
+- **Real-time Interaction:** Powered by LiveKit's RTC sessions for minimal latency.
+- **Advanced Audio Processing:** Includes noise cancellation using `ai_coustics` (Quail VF S) to ensure clear audio input.
+- **Multilingual Support:** Uses Deepgram Nova-3 for high-accuracy, multi-language speech recognition.
+- **Intelligent Responses:** Driven by the `gemma-4-31b-it` model for helpful and concise conversations.
+- **Natural Voice:** High-quality speech synthesis via Inworld TTS.
+
+## 🛠️ Tech Stack
+
+| Component | Provider/Model |
+| :--- | :--- |
+| **Framework** | LiveKit Agents |
+| **LLM** | Google Gemma-4 (31B IT) |
+| **STT** | Deepgram Nova-3 |
+| **TTS** | Inworld TTS-2 (Voice: Ashley) |
+| **Audio Enhancement** | AI Acoustics (Quail VF S) |
+
+## 📋 Prerequisites
+
+Before running the agent, ensure you have the following:
+
+- Python 3.9+
+- A LiveKit project (URL, API Key, and Secret)
+- API keys for the following providers:
+  - Deepgram
+  - Google (for Gemma)
+  - Inworld
+
+## ⚙️ Installation & Setup
+
+1. **Clone the repository:**
+   ```bash
+   git clone <repository-url>
+   cd traditional-ai
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   pip install livekit-agents livekit-plugins-ai_coustics python-dotenv
+   # Install other necessary plugins as required by the environment
+   ```
+
+3. **Environment Configuration:**
+   Create a `.env` file in the root directory and add your credentials:
+   ```env
+   LIVEKIT_URL=wss://your-project.livekit.cloud
+   LIVEKIT_API_KEY=your-api-key
+   LIVEKIT_API_SECRET=your-api-secret
+   DEEPGRAM_API_KEY=your-deepgram-key
+   GOOGLE_API_KEY=your-google-key
+   INWORLD_API_KEY=your-inworld-key
+   ```
+
+## 🏃 Running the Agent
+
+Start the agent server by running:
+
 ```bash
-ollama pull gemma3:1b
+python agent.py dev
 ```
 
-### 2. Installation
-```bash
-git clone <repo-url>
-cd openchat
-pip install -r requirements.txt  # or 'uv sync'
-```
+Once the server is running, you can connect to the room via the [LiveKit Sandbox](https://agents-sandbox.livekit.io/) or your own LiveKit client to start talking to the assistant.
 
-### 3. Run it
-Choose your preferred interface:
+## 🤖 Assistant Personality
 
-**🌐 Web Interface (Recommended)**
-```bash
-streamlit run app.py
-```
-
-**💻 CLI Interface**
-```bash
-python main.py
-```
-
----
-
-## 🛠️ Technical Overview
-
-| Component | Technology | Purpose |
-| :--- | :--- | :--- |
-| **Frontend** | Streamlit | Interactive Web UI with streaming support |
-| **CLI** | Python | Minimalist terminal-based interaction |
-| **Engine** | Ollama | Local LLM orchestration & API |
-| **Logic** | `openchat.llm` | Shared abstraction for chat & model management |
-
-## ✨ Key Features
-- **100% Local**: No API keys, no data leaves your machine.
-- **Dynamic Model Switching**: Change models on-the-fly via the Web UI.
-- **Streaming**: Real-time token generation for a responsive experience.
-- **Dual Interface**: Flexible usage via Browser or Terminal.
-
-## 📂 Project Structure
-- `app.py`: Streamlit web application.
-- `main.py`: CLI entry point.
-- `src/openchat/llm.py`: Core logic for Ollama API communication.
-
-# voice-assistant-agent
-0a04253c2921210f86acb699f1a6ff3886762476
+The assistant is designed to be:
+- **Concise:** Provides direct answers without complex formatting or symbols.
+- **Friendly:** Maintains a curious and welcoming tone.
+- **Humorous:** Occasionally incorporates a sense of humor to make the interaction more natural.
